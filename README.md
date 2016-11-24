@@ -6,7 +6,7 @@ Install `go get github.com/Diggernaut/xmlconverter`
 
 Usage:
 
-`go build main.go`
+`go build -o xmlconverter main.go`
 
 `./xmlconverter -db="somedb" -col="somecol" -dbaddr="127.0.0.1" > out.xml`
 
