@@ -160,7 +160,7 @@ func fileToXml(filename string) {
 
 }
 func FileMapToXML(m map[string]interface{}) []byte {
-	data, err := mxj.AnyXmlIndentByte(m, "", " ", "item")
+	data, err := mxj.AnyXmlIndentByte(m, "", " ", "")
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 	}
