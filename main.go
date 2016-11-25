@@ -64,9 +64,6 @@ func MapToXML(obj map[string]interface{}, id int, wg *sync.WaitGroup, ch chan XM
 		fmt.Fprintln(os.Stderr, err)
 	}
 	ch <- XMLOBJ{data: data, id: id}
-	// for lower memory usage
-	//data = nil
-	//obj = nil
 }
 func mongoToXml(db, col, dbaddr string) {
 	// connect to database
@@ -94,7 +91,6 @@ func mongoToXml(db, col, dbaddr string) {
 	done := make(chan bool, 1)
 	// container
 	sl := make([]XMLOBJ, l)
-	// goroutines scheduler
 	runtime.Gosched()
 	// loop over items in db, for each make new goroutine
 	// add each to waitgroup
@@ -153,9 +149,7 @@ func fileToXml(filename string) {
 	}
 	fmt.Fprintln(os.Stdout, "<?xml version='1.0' encoding='UTF-8'?>")
 	fmt.Fprintln(os.Stdout, "<items>")
-	// iterate over container and print data in Stdout
 	fmt.Fprintln(os.Stdout, string(FileMapToXML(m)))
-
 	fmt.Fprintln(os.Stdout, "</items>")
 
 }
